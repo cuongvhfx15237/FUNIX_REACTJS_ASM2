@@ -13,17 +13,21 @@ class DishDetail extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      dataPass:null,
+      selectedDish:null,
     };
   }
-  renderDish(Pass=this.props.dataPass) {
-    if (Pass != null) {
+  onDishSelect(dish) {
+    this.setState({ selectedDish: dish });
+  }
+
+  renderDish(dish=this.props.dish) {
+    if (dish != null) {
       return (
-        <Card key={Pass.id}>
-          <CardImg top src={Pass.image} alt={Pass.name} />
+        <Card key={dish.id}>
+          <CardImg top src={dish.image} alt={dish.name} />
           <CardBody>
-            <CardTitle>{Pass.name}</CardTitle>
-            <CardText>{Pass.description}</CardText>
+            <CardTitle>{dish.name}</CardTitle>
+            <CardText>{dish.description}</CardText>
           </CardBody>
         </Card>
       );
@@ -32,18 +36,21 @@ class DishDetail extends Component {
     }
   }
 
-  renderComment(Pass=this.props.dataPass) {
-    if (Pass != null) {
+  renderComment(dish=this.props.dish) {
+    if (dish != null) {
       return (
+        <div className="container">
         <Card >
           <CardBody >
             <h2>Comments</h2>
-            {Pass.comments.map(function (comments) {
+            {dish.comments.map(function (comments) {
               return (
                 <div key={comments.id}>
                   <CardText>{comments.comment}</CardText>
                   <CardText>
-                    {comments.author}, {comments.date}
+                    {comments.author}, {new Intl.DateTimeFormat('en-US', 
+                    { year: 'numeric', month: 'short', day: '2-digit'}).format(
+                      new Date(Date.parse(comments.date)))}
                   </CardText>
                   <br></br>
                 </div>
@@ -51,20 +58,24 @@ class DishDetail extends Component {
             })}
           </CardBody>
         </Card>
+        </div>
       );
     } else {
       return <div></div>;
     }
   }
   render() {
+    const dish = this.props.selectedDish;
     return (
+      <div className="container">
         <div className="row">
           <div className="col-12 col-md-5 m-1">
-            {this.renderDish(this.state.Pass)}
+            {this.renderDish(this.state.dish)}
           </div>
           <div className="col-12 col-md-5 m-1">
-            {this.renderComment(this.state.Pass)}
+            {this.renderComment(this.state.dish)}
           </div>
+        </div>
         </div>
     );
   }
