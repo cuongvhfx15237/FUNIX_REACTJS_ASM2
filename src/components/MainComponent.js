@@ -21,21 +21,20 @@ class Main extends Component {
     //   <Home/>
     // );
     // }
-    console.log(this.state.dishes); 
     return(
      
       <div>
         <Header />
         <Routes>
               <Route path='/home' element={<Home/>} />
-              <Route exact path='/menu' component={() => 
-              <Menu dishes={this.state.dishes} />}
-              element={<Navigate to="/home" />}/>
-          </Routes>
+              <Route path='/menu' element={<Menu dishes={this.state.dishes} />}/>
+              <Route path='/*' element={<Navigate to="/home" />}/>
+        </Routes>
         <Footer />
       </div>
     
     );
+
   }
 }
 
