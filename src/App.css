@@ -31,9 +31,6 @@ address{
 .navbar-dark {
   background-color: #512DA8;
 }
-ul{
-  display: inline;
-}
-li{
+ul {
   list-style-type: none;
 }

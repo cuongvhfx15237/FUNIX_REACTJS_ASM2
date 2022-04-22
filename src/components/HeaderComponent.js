@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 class Header extends Component {
     constructor(props) {
         super(props);
