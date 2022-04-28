@@ -5,7 +5,6 @@ import '../index.css'
 
 
 function RenderStaff(Staff=this.props.Staffs){
-    console.log(Staff);
     // console.log(Staff.department)
     if (Staff != null) {
         return (
@@ -21,7 +20,6 @@ function RenderStaff(Staff=this.props.Staffs){
               <CardText>
                 Ngày vào công ty: {dateFormat(Staff.startDate, "dd/mm/yyyy")}
               </CardText>
-              {/* <CardText>Phòng ban: {Staff.department.name} </CardText> */}
               <CardText>Hệ số lương: {Staff.salaryScale} </CardText>
               <CardText>Số ngày nghỉ còn lại: {Staff.annualLeave}</CardText>
               <CardText>Số ngày đã làm thêm: {Staff.overTime}</CardText>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardTitle } from "reactstrap";
-import RenderStaff from "./Staff";
 import { Button } from 'reactstrap';
-import '../index.css'
+import '../index.css';
+import BTN from './ButtonHandle'
 
 
 class StaffList extends Component {
@@ -19,44 +19,44 @@ class StaffList extends Component {
   }
   onselectedButton(BUTTON) {
     this.setState({ selectedButton: BUTTON });
-    // console.log(Button)
+    console.log(Button)
   }
  
-  onClickTrigger(butn) {
-    this.setState({ ClassChange: butn.ClassChange });
-  }
+  // onClickTrigger(butn) {
+  //   this.setState({ ClassChange: butn.ClassChange });
+  // }
   render() {
 
     
     //data of button
-    const Abutton = [
-      {
-        id: "1",
-        name: '2 Cột',
-        ClassChange: 'col-sm-6 col-md-6 col-xl-6'
-      },
-      {
-        id: "2",
-        name: '3 Cột',
-        ClassChange: 'col-sm-6 col-md-6 col-xl-4'
-      },
-      {
-        id: "3",
-        name: '6 Cột',
-        ClassChange: 'col-sm-6 col-md-6 col-xl-2'
-      }
-    ]
-    const BUTTON = Abutton.map(Butn => {
-      return (
-        <Button
-          key={Butn.id}
-          className={"col-sm-4 col-md-4 col-xl-4"}
-          title={Butn.ClassChange}
-          onClick={() => this.onClickTrigger(Butn)}>
-          {Butn.name}
-        </Button>
-      )
-    })
+    // const Abutton = [
+    //   {
+    //     id: "1",
+    //     name: '2 Cột',
+    //     ClassChange: 'col-sm-6 col-md-6 col-xl-6'
+    //   },
+    //   {
+    //     id: "2",
+    //     name: '3 Cột',
+    //     ClassChange: 'col-sm-6 col-md-6 col-xl-4'
+    //   },
+    //   {
+    //     id: "3",
+    //     name: '6 Cột',
+    //     ClassChange: 'col-sm-6 col-md-6 col-xl-2'
+    //   }
+    // ]
+    // const BUTTON = Abutton.map(Butn => {
+    //   return (
+    //     <Button
+    //       key={Butn.id}
+    //       className={"col-sm-4 col-md-4 col-xl-4"}
+    //       title={Butn.ClassChange}
+    //       onClick={() => this.onClickTrigger(Butn)}>
+    //       {Butn.name}
+    //     </Button>
+    //   )
+    // })
 
         const staf = this.props.Staffs.map((Staff) => {
         return (
@@ -70,19 +70,19 @@ class StaffList extends Component {
       })
       return (
         <div className="container-fluid">
-          <div className="row">{BUTTON}</div>
           <br></br>
+          <BTN/>
           <div className="row">
             {staf}
           </div>
           <div className="row">
             Bấm vào tên Nhân Viên để xem thông tin cụ thể.
           </div>
-          <div className="row">
+          {/* <div className="row">
             <div className="col-sm-12 col-md-6">
               {RenderStaff(this.state.selectedStaff)}
             </div>
-          </div>
+          </div> */}
         </div>
       )
 

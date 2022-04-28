@@ -1,40 +1,38 @@
-import React from 'react';
-import { Card, CardImg, CardImgOverlay, Label,CardBody, CardHeader,
-    CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Card, CardBody, CardTitle } from "reactstrap";
+import { Button } from "reactstrap";
+import BTN from './ButtonHandle'
 
-function Salary(props){
-    const salarys = props.Staffs.map((salary)=> {
+
+function Salary(props) {
+    function onSalarySelected(salary){
+       console.log(salary)
+        }
+
+        const staf = props.Staffs.map((Staff) => {
+
     return (
-        <Card>
-            <CardTitle>Họ và tên</CardTitle>
-            <CardImg/>
-            <p>Mã nhân viên</p>
-            <p>Hệ số lương</p>
-            <p>Số ngày làm thêm</p>
-            <Label></Label>
-            
-        </Card>
-    )
-
-})
-return (
-    <div className="container">
-        <div className="row">
-            <Breadcrumb>
-                <BreadcrumbItem></BreadcrumbItem>
-                <Breadcrumb></Breadcrumb>
-            </Breadcrumb>
-        <div className="col">
-            <Card>
-                <CardHeader className=""></CardHeader>
-                <CardBody>
-                    
-                </CardBody>
-            </Card>
+        <div className='contaier'>
+        <div key={Staff.id} className={props.classChange}>
+          <Card onClick={() => onSalarySelected(Staff)}>
+            <CardBody>
+              <CardTitle>{Staff.name}</CardTitle>
+              <p>Mã Nhân Viên : {Staff.id}</p>
+              <p>Hệ số lương: {Staff.salaryScale}</p>
+              <p>Số ngày làm thêm: {Staff.overTime} </p>
+            </CardBody>
+          </Card>
         </div>
         </div>
+        );
+        });
+  return (
+    <div className="container-fluid">
+        <BTN/>
+      <div className="row">{staf}</div>
+      <div className="row">Bấm vào tên Nhân Viên để xem thông tin cụ thể.</div>
     </div>
-)
+  );
+
 }
 export default Salary;

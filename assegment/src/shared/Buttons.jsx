@@ -1,4 +1,4 @@
-export const Abutton = [
+export const ABUTTON = [
     {
       id: "1",
       name:'2 Cột',
