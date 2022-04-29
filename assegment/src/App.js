@@ -19,8 +19,9 @@ class App extends Component {
     return(
       <div>
         <Header/>
-        {/* <StaffList Staffs = {this.state.Staffs}/> */}
+        <br></br>
         <Main />
+        <br></br>
         <Footer/>
       </div>
     )

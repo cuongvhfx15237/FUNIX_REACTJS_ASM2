@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import StaffList from './StaffListComponent';
-import RenderStaff from './Staff';
-import { STAFFS } from '../shared/staffs';
+import Department from './DeparmentComponent';
+import { DEPARTMENTS, STAFFS } from '../shared/staffs';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Salary from './SalaryComponent';
+import RenderStaff from './Staff';
 
 class Main extends Component {
 
@@ -11,6 +12,7 @@ class Main extends Component {
     super(props);
     this.state = {
       selectedStaff: STAFFS,
+      selectedDept: DEPARTMENTS,
     };
   }
 
@@ -26,17 +28,16 @@ class Main extends Component {
               leader={this.state.leaders.filter((leader) => leader.featured)[0]}
               />}
                /> */}
-               <Route path='/NhanVien' element={<StaffList Staffs={this.state.selectedStaff} />}/>
-              <Route path='/PhongBan' element={<RenderStaff Staffs={this.state.selectedStaff} />}/>
+              <Route path='/NhanVien' element={<StaffList Staffs={this.state.selectedStaff} />}/>
+              <Route path='/NhanVien1' element={<RenderStaff Staffs={this.state.selectedStaff} />}/>
+              <Route path='/PhongBan' element={<Department Department={this.state.selectedDept} />}/>
               <Route path='/BangLuong' element={<Salary Staffs={this.state.selectedStaff} />}/>
               <Route path='/*' element={<Navigate to="/Nhanvien" />}/>
         </Routes>
       </div>
     
     );
-
   }
 }
-
 
 export default Main;

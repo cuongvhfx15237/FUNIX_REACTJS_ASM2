@@ -5,7 +5,6 @@ import '../index.css'
 
 
 function RenderStaff(Staff=this.props.Staffs){
-    // console.log(Staff.department)
     if (Staff != null) {
         return (
           <Card>
