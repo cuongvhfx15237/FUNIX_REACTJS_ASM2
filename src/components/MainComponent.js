@@ -23,18 +23,21 @@ class Main extends Component {
   }
 
   render() {
+    const HomePage = ()=> {
+      return(
+        <Home dish = {this.state.dishes.filter((dish) => dish.featured)[0]}
+        promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
+        leader={this.state.leaders.filter((leader) => leader.featured)[0]}
+        />
+      )
+    }
     
     return(
      
       <div>
         <Header />
         <Routes>
-              <Route path='/home' element={<Home 
-              dish={this.state.dishes.filter((dish) => dish.featured)[0]}
-              promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
-              leader={this.state.leaders.filter((leader) => leader.featured)[0]}
-              />}
-               />
+              <Route path='/home' element={<HomePage/>}/>
               <Route path='/menu' element={<Menu dishes={this.state.dishes} />}/>
               <Route path='/aboutus' element={<Contact/>}/>
               <Route path='/contactus' element={<Contact/>}/>
