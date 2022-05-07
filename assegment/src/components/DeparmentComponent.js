@@ -1,44 +1,15 @@
-import React, { Component } from "react";
-import { Card, Button } from "reactstrap";
-import {ABUTTON} from '../shared/Buttons'
+import React from "react";
+import { Card } from "reactstrap";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { Link } from "react-router-dom";
 
-
-class Department extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      Abutton:ABUTTON,
-      selectedDept: null,
-      ClassChange: "col-sm-12 col-md-6 col-xl-4",
-    }
-  }
+function Department (props){
   
-  onClickTrigger(butn) {
-    this.setState({ ClassChange: butn.ClassChange });
-  }
   
-  onStaffSelected(Dept) {
-    this.setState({ selectedDept: Dept });
-  }
-  
-render(){
-    const BUTTON = ABUTTON.map(Butn => {
+    const Dept = props.Department.map((Dept) => {
       return (
-        <Button
-          key={Butn.id}
-          className={"col-sm-4 col-md-4 col-xl-4"}
-          title={Butn.ClassChange}
-          onClick={() => this.onClickTrigger(Butn)}>
-          {Butn.name}
-        </Button>
-      )
-    }
-    )
-  
-    const Dept = this.props.Department.map((Dept) => {
-      return (
-          <div key={Dept.id}  className={this.state.ClassChange} style={{padding: "1em"}}>
-              <Card style={{padding: "10px"}}>
+          <div key={Dept.id}  className="col-sm-12 col-md-6 col-xl-4" style={{padding: "1em"}}>
+              <Card style={{padding: "10px",  backgroundImage: "linear-gradient(#0dcaf0 50%, #f8f9fa 50%"}}>
                   <h3>{Dept.name}</h3>
                   <p>Số Lượng Nhân Viên : {Dept.numberOfStaff}</p>
               </Card>
@@ -47,13 +18,16 @@ render(){
           });
           
     return (
-      <div className="container">
-        {BUTTON}
-        <br></br>
+      <div className="container-fluid">
         <div className="row">
-              <h2>Phòng Ban</h2>
-              <hr/>
-            </div>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to='Nhanvien'>Nhân Viên</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active> Phòng Ban</BreadcrumbItem>
+        </Breadcrumb>
+      </div>
+      <hr/>
           <div className="row">
             {Dept}
           </div>
@@ -61,7 +35,5 @@ render(){
       </div>
     );
   
-}
-
 }
 export default Department;

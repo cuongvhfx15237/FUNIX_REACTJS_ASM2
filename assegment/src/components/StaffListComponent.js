@@ -1,54 +1,35 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardTitle } from "reactstrap";
+import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardTitle } from "reactstrap";
 import { Button } from 'reactstrap';
 import '../index.css';
 import {ABUTTON} from '../shared/Buttons'
+import { Link } from "react-router-dom";
 
-class StaffList extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      selectedStaff: null,
-      ClassChange: "col-sm-6 col-md-4 col-xl-2",
-      Abutton:ABUTTON
+function  RenderStaffList({Staff}) {
 
-    };
-  }
-  onStaffSelected(Staff) {
-    this.setState({ selectedStaff: Staff });
-  }
-  onClickTrigger(Butn) {
-    this.setState({ ClassChange: Butn.ClassChange });
-  }
-  render() {
+  //render  list staff with image and name;
+  return (
 
-    const BUTTON = this.state.Abutton.map(Butn => {
-      return (
-        <Button
-          key={Butn.id}
-          className={"col-sm-4 col-md-4 col-xl-4"}
-          title={Butn.ClassChange}
-          onClick={() => this.onClickTrigger(Butn)}>
-          {Butn.name}
-        </Button>
-      )
-    })
+      <Card>
+        <Link to={`${Staff.id}`}>
+          <CardImg src={Staff.image} alt={Staff.image}/>
+          <CardTitle style = {{textAlign : 'center'}}>{Staff.name}</CardTitle>
+        </Link>
+      </Card>
 
-        const staf = this.props.Staffs.map((Staff) => {
+
+  );}
+  //StaffList Component
+      const StaffList = (props) => {
+       const staf = props.Staffs.map((Staff) => {
         return (
-          <div key={Staff.id} className={this.state.ClassChange} style={{padding: 1 + "em"}}>
-            <Card onClick={() => this.onStaffSelected(Staff)}>
-              <CardImg src={Staff.image} alt={Staff.image}/>
-              <CardTitle style={{textAlign : 'center'}}>{Staff.name}</CardTitle>
-            </Card>
+          <div key={Staff.id} className="col-sm-6 col-md-4 col-xl-2" style={{padding: 1 + "em"}}>
+            <RenderStaffList Staff={Staff}/>
           </div>
         )
       })
       return (
-        <div className="container">
-          {BUTTON}
-          <br></br>
+        <div className="container-fluid">
           <div className="row">
             <h2>Nhân Viên</h2>
             <hr/>
@@ -62,5 +43,5 @@ class StaffList extends Component {
         </div>
       )
 
-    }}
+    }
     export default StaffList;

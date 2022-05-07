@@ -19,9 +19,8 @@ class Header extends Component {
 
     render() {
         return(
-            <div>
+            <div className="container-fluid">
                 <Navbar dark expand="md" style={{margin: 0 + 'em', backgroundColor: 'Dodgerblue'}}>
-                    <div className="container-fluid">
                         <NavbarToggler onClick={this.toggleNav} />
                         <NavbarBrand className="mr-auto" href="/">
                             <img src='assets/images/logo.png' height="50px" width="50px" alt='LogoIcon' />
@@ -51,7 +50,6 @@ class Header extends Component {
                             </NavItem>
                             </Nav>
                         </Collapse>
-                    </div>
                 </Navbar>
             </div>
         );
