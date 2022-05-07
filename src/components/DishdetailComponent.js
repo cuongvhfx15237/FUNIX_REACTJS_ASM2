@@ -28,11 +28,11 @@ import { Link } from 'react-router-dom';
                   <CardText>
                     {comment.comment}
                   </CardText>
-                  <CardText>
+                  <CardText>---
                     {comment.author}, 
                     {new Intl.DateTimeFormat('en-US', 
                     { year: 'numeric', month: 'short', day: '2-digit'}).format(
-                      new Date(Date.parse(comment.date)))}
+                      new Date(Date.parse(comment.date)))}---
                     </CardText>
 
                   <br></br>

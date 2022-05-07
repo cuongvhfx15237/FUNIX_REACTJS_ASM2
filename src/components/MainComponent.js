@@ -9,7 +9,10 @@ import { LEADERS } from '../shared/leaders';
 import { DISHES } from '../shared/dishes';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useParams } from 'react-router-dom';
+// import { withRouter } from './withRouter';
+
+
 
 class Main extends Component {
 
@@ -32,11 +35,13 @@ class Main extends Component {
       )
     }
 
+    
     const DishWithId = () => {
+      debugger
+      const id = useParams();
         return (
-          <DishDetail dish={this.state.dishes.filter((dish)=> dish.id === parseInt(dish.dishId, 10))[0]}
-            comments = {this.state.comments.filter((comment)=> comment.dishId === parseInt(comment.dishId, 10))}
-            
+          <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(id.dishId,10))[0]}
+            comments = {this.state.comments.filter((comment) => comment.dishId === parseInt(id.dishId,10))}
             />
           )
     }
@@ -45,13 +50,13 @@ class Main extends Component {
       <div>
         <Header />
         <Routes>
-              <Route path='/home' element={<HomePage/>}       />
-              <Route path='/menu' element={<Menu dishes={this.state.dishes} />}/>
-              <Route path='/menu/:dishId' element={<DishWithId/>}/>
-              <Route path='/aboutus' element={<Contact/>}/>
-              <Route path='/contactus' element={<Contact/>}/>
-              <Route path='/*' element={<Navigate to="/home" />}/>
-        </Routes>
+              <Route path='home' element={<HomePage/>}       />
+              <Route path='menu' element={<Menu dishes={this.state.dishes} />}/>
+              <Route path='menu/:dishId' element={<DishWithId/>}/>
+              <Route path='aboutus' element={<Contact/>}/>
+              <Route path='contactus' element={<Contact/>}/>
+              <Route path='*' element={<Navigate to="home" />}/>
+        </Routes> 
         <Footer />
       </div>
     
@@ -62,3 +67,4 @@ class Main extends Component {
 
 
 export default Main;
+
