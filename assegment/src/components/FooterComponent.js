@@ -9,9 +9,9 @@ function Footer(props) {
                 <div className="col-4 offset-1 col-sm-2">
                     <h5>Links</h5>
                     <ul className="list-unstyled">
-                        <li><Link to='/Nhanvien'>Nhân viên</Link></li>
-                        <li><Link to='/PhongBan'>Phòng Ban</Link></li>
-                        <li><Link to='/BangLuong'>Bảng Lương</Link></li>
+                        <li><Link to='/Nhanvien' style={{ textDecoration: "none"}}>Nhân viên</Link></li>
+                        <li><Link to='/PhongBan' style={{ textDecoration: "none"}}>Phòng Ban</Link></li>
+                        <li><Link to='/BangLuong' style={{ textDecoration: "none"}}>Bảng Lương</Link></li>
                     </ul>
                 </div>
                 <div className="col-7 col-sm-5">

@@ -1,9 +1,16 @@
-import React, { Component } from "react";
-import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardTitle } from "reactstrap";
-import { Button } from 'reactstrap';
+import React from "react";
+import { Card, CardImg, CardTitle } from "reactstrap";
 import '../index.css';
-import {ABUTTON} from '../shared/Buttons'
 import { Link } from "react-router-dom";
+
+//Search Bar in page
+function SearchBar(){
+  return(
+  <div className="input-group" style={{width: 50 + '%'}}>
+<input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+<button type="button" className="btn btn-outline-primary" style={{backgroundColor:"none"}}>search</button>
+</div>)
+}
 
 function  RenderStaffList({Staff}) {
 
@@ -16,8 +23,6 @@ function  RenderStaffList({Staff}) {
           <CardTitle style = {{textAlign : 'center'}}>{Staff.name}</CardTitle>
         </Link>
       </Card>
-
-
   );}
   //StaffList Component
       const StaffList = (props) => {
@@ -31,9 +36,10 @@ function  RenderStaffList({Staff}) {
       return (
         <div className="container-fluid">
           <div className="row">
-            <h2>Nhân Viên</h2>
-            <hr/>
-          </div>
+            <h2 style={{width: 50 + "%"}}>Nhân Viên</h2>
+            <SearchBar/>
+          </div>           
+           <hr/>
           <div className="row">
             {staf}
           </div>

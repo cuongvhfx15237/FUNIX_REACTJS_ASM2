@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardImg, CardText, CardBody } from "reactstrap";
+import { CardImg, CardText, CardBody } from "reactstrap";
 import dateFormat from "dateformat";
 import '../index.css'
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
@@ -39,4 +39,4 @@ function RenderStaff(props) {
         );
       }
 
-        export default RenderStaff;
+export default RenderStaff;
