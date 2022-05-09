@@ -1,10 +1,13 @@
-import React from "react";
+import React, {ReactDOM} from "react";
 import { Card } from "reactstrap";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
+// import SearchBar from "./SearchComponent";
 
 
 //Search Bar in page
+
+
 function SearchBar(){
   return(
   <div className="input-group" style={{width: 50 + '%'}}>
@@ -21,9 +24,7 @@ function formatMoney(n) {
 }
 
   function Salary(props){
-
-    console.log(mySearch)
-    const staf = props.Staffs.map((Staff) => {
+   const staf = props.Staffs.map((Staff) => {
       return (
           <div key={Staff.id}  className="col-sm-12 col-md-6 col-xl-4" style={{padding: 1 + "rem"}}>
               <Card  style={{padding: 0.4 + "rem",  backgroundImage: "linear-gradient(#0dcaf0 20%, #f8f9fa 20%"}}>
@@ -41,6 +42,8 @@ function formatMoney(n) {
             </div>
           );
           }); 
+
+
           
     return (
       <div className="container-fluid">
@@ -54,7 +57,6 @@ function formatMoney(n) {
         </Breadcrumb>
         <SearchBar/>
       </div>
-
       <hr/>
           <div className="row" >
             {staf}
@@ -66,16 +68,26 @@ function formatMoney(n) {
 }
 
 
-function mySearch(x){
-  x = document.getElementById("SearchName").value;
+// const SearchName = "";
+function mySearch (x) {
+
+  var x = document.getElementById("SearchName").value;
   if (x===""){
       console.log("null")
   }
   else{
       console.log(x)
   }
-  return x;
+  return x ;
 }
+export {mySearch};
 
+// class Child extends React.Component {
+
+//   componentDidMount(){
+//     alert (mySearch);
+//   }
+// }
 
 export default Salary;
+

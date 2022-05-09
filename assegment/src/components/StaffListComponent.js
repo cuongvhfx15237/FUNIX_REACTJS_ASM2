@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 function SearchBar(){
   return(
   <div className="input-group" style={{width: 50 + '%'}}>
-<input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-<button type="button" className="btn btn-outline-primary" style={{backgroundColor:"none"}}>search</button>
-</div>)
+<input id="SearchName" type="text" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+<button type="button" className="btn btn-outline-primary" style={{backgroundColor:"none"}} onClick= {mySearch}>search</button>
+</div>
+)
 }
 
 function  RenderStaffList({Staff}) {
@@ -50,4 +51,18 @@ function  RenderStaffList({Staff}) {
       )
 
     }
+
+    function mySearch (x) {
+
+      var x = document.getElementById("SearchName").value;
+      if (x===""){
+          console.log("null")
+      }
+      else{
+          console.log(x)
+      }
+      return x ;
+    }
+    console.log(mySearch);
+    export {mySearch};
     export default StaffList;
