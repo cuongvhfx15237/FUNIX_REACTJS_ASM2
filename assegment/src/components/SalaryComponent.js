@@ -1,4 +1,4 @@
-import React, {ReactDOM} from "react";
+import React, {useState} from "react";
 import { Card } from "reactstrap";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -8,23 +8,31 @@ import { Link } from "react-router-dom";
 //Search Bar in page
 
 
-function SearchBar(){
-  return(
-  <div className="input-group" style={{width: 50 + '%'}}>
-<input id="SearchName" type="text" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-<button type="button" className="btn btn-outline-primary" style={{backgroundColor:"none"}} onClick= {mySearch}>search</button>
-</div>
-)
-}
 
 //add comman to Money
 function formatMoney(n) {
-
   return   (Math.round(n * 100) / 100).toLocaleString()+ "VND ";
 }
 
-  function Salary(props){
-   const staf = props.Staffs.map((Staff) => {
+  function Salary(props, iStaffs){
+      // getvalue search Name
+    const [searchName, setSearchName] = useState('');
+    const mySearch = (x) => {
+
+      setSearchName(document.getElementById("SearchName").value);
+  
+    }
+    if (searchName === ''){
+     iStaffs = props.Staffs;
+    }
+    else {
+     iStaffs=props.Staffs.filter((iStaff)=> iStaff.name===searchName)}
+
+
+
+
+  //body
+       const staf = iStaffs.map((Staff) => {
       return (
           <div key={Staff.id}  className="col-sm-12 col-md-6 col-xl-4" style={{padding: 1 + "rem"}}>
               <Card  style={{padding: 0.4 + "rem",  backgroundImage: "linear-gradient(#0dcaf0 20%, #f8f9fa 20%"}}>
@@ -55,7 +63,12 @@ function formatMoney(n) {
           </BreadcrumbItem>
           <BreadcrumbItem active> Bảng Lương</BreadcrumbItem>
         </Breadcrumb>
-        <SearchBar/>
+  
+          <div className="input-group" style={{width: 50 + '%'}}>
+        <input id="SearchName" type="text" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <button type="button" className="btn btn-outline-primary" style={{backgroundColor:"none"}} onClick= {mySearch}>search</button>
+        </div>
+
       </div>
       <hr/>
           <div className="row" >
@@ -67,27 +80,6 @@ function formatMoney(n) {
   
 }
 
-
-// const SearchName = "";
-function mySearch (x) {
-
-  var x = document.getElementById("SearchName").value;
-  if (x===""){
-      console.log("null")
-  }
-  else{
-      console.log(x)
-  }
-  return x ;
-}
-export {mySearch};
-
-// class Child extends React.Component {
-
-//   componentDidMount(){
-//     alert (mySearch);
-//   }
-// }
 
 export default Salary;
 

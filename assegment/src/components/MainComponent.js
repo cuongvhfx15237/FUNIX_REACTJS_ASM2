@@ -5,7 +5,7 @@ import { DEPARTMENTS, STAFFS } from '../shared/staffs';
 import { Routes, Route, Navigate, useParams } from 'react-router-dom';
 import Salary, { mySearch } from './SalaryComponent';
 import RenderStaff from './Staff';
-import SearchName from './SearchComponent';
+// import SearchName from './SearchComponent';
 
 
 class Main extends Component {
@@ -28,18 +28,12 @@ class Main extends Component {
         />
       )
     }
-    const SearchPage = ()=> {
-      return (
-        <SearchName 
-        Staffs={this.state.Staffs.filter((Staff)=> Staff.name === {mySearch})}/>
-      )
-    };
+
     return(
      
       <div>
         <Routes>
               <Route path='NhanVien' element={<StaffList Staffs={this.state.Staffs} />}/>
-              <Route path='NhanVien/Search' element={<SearchPage/>}/>
               <Route path='NhanVien/:id' element={<StaffWithId />}/>
               <Route path='PhongBan' element={<Department Department={this.state.Departments} />}/>
               <Route path='BangLuong' element={<Salary Staffs={this.state.Staffs} />}/>
