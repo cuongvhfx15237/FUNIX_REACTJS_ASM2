@@ -33,7 +33,7 @@ class Main extends Component {
      
       <div>
         <Routes>
-              <Route path='NhanVien' element={<StaffList Staffs={this.state.Staffs} />}/>
+              <Route path='NhanVien' element={<StaffList Staffs={this.state.Staffs} Departments={this.state.Departments} />}/>
               <Route path='NhanVien/:id' element={<StaffWithId />}/>
               <Route path='PhongBan' element={<Department Department={this.state.Departments} />}/>
               <Route path='BangLuong' element={<Salary Staffs={this.state.Staffs} />}/>
