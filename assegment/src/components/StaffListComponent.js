@@ -4,7 +4,6 @@ import "../index.css";
 import { Link } from "react-router-dom";
 
 function RenderStaffList( {Staff} ) {
-  debugger
   //render  list staff with image and name;
   return (
     <Card>
@@ -37,43 +36,50 @@ const StaffList = (props, iStaffs) => {
   
   };
 
-  const DepartmentContainer = props.Departments.map((departmentItem) => {
-
-const Staffs = iStaffs.filter(iStaff => iStaff.department.name == departmentItem.name)
+const DepartmentContainer = props.Departments.map((departmentItem) => {
+  
+  const Staffs = iStaffs.filter(iStaff => iStaff.department.name == departmentItem.name)
       if (Defragment === "Defragment") {
+
+
+
+        return(
         Staffs.map((Staff) => {
-          console.log(Staff)
-        return (
+          return(
           <div className="row">
             <div
               key={departmentItem.id}
-              className="col-sm-6 col-md-4 col-xl-2"
-              style={{ padding: 1 + "em" }}>
+              className="col-sm-12 col-md-3 col-xl-2"
+              style={{ padding: 1 + "em", backgroundColor: "blue"}}>
               {departmentItem.name}
             </div>
             <div
               key={Staff.id}
-              className="col-sm-6 col-md-4 col-xl-2"
+              className="col-sm-12 col-md-3 col-xl-2"
               style={{ padding: 1 + "em" }} >
               <RenderStaffList Staff={Staff} />
             </div>
           </div>
-        );
-      } )}
+          )
+      }))
+      }
       else {
-    Staffs.map(Staff => {
-      console.log(Staff)
-          return (
+    return (
+      Staffs.map(Staff => {
+        return(
             <div
               key={Staff.id}
               className="col-sm-6 col-md-4 col-xl-2"
               style={{ padding: 1 + "em" }}>
               <RenderStaffList Staff={Staff} />
             </div>
-          );
-        });
-      }
-    });
+        )
+
+          
+        }))}})
+
+      
+
   
   //can xu ly o day
 
