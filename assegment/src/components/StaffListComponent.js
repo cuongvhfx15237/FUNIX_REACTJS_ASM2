@@ -3,7 +3,8 @@ import { Card, CardImg, CardTitle } from "reactstrap";
 import "../index.css";
 import { Link } from "react-router-dom";
 
-function RenderStaffList({ Staff }) {
+function RenderStaffList( {Staff} ) {
+  debugger
   //render  list staff with image and name;
   return (
     <Card>
@@ -15,72 +16,67 @@ function RenderStaffList({ Staff }) {
   );
 }
 
-// function DepartmentBar(myDefragment){
-//   const [Defragment, setDefragment] = useState("");
-// myDefragment = () => {
-//   setDefragment(document.getElementById("Defragment-select").value)}
-//   console.log(Defragment)
-//   if (Defragment === "Defragment"){
-//     return (
-//       <div className="row">
-//         <div> fuck U bitch</div>
-//       </div>
-//     )
-//   }
-//   else {
-//     return (
-//       <div></div>
-//     )
-//   }
-// }
-//StaffList Component
 const StaffList = (props, iStaffs) => {
   // getvalue search Name
+  //params : iStaff
   const [searchName, setSearchName] = useState("");
   const mySearch = () => {
     setSearchName(document.getElementById("SearchName").value);
   };
   if (searchName === "") {
     iStaffs = props.Staffs;
-  } 
-  else {
+  } else {
     iStaffs = props.Staffs.filter((iStaff) => iStaff.name === searchName);
   }
-//Defragment
-  const [Defragment, setDefragment] = useState("");
 
-const myDefragment = () => {
-  setDefragment(document.getElementById("Defragment-select").value)}
-  console.log(Defragment)
-const DepartmentBar = () => {
+  //Defragment
+  const [Defragment, setDefragment] = useState(""); 
+  const myDefragment = () => {
+
+    setDefragment(document.getElementById("Defragment-select").value);
   
-if (Defragment === "Defragment"){
-    return (<div className="row">
-        <div>
-          1111111111111111
-        </div>
-    </div>)
-  }
+  };
 
-else { 
+  const DepartmentContainer = props.Departments.map((departmentItem) => {
 
-  return (<div>aaaaa</div>)}
-}
-
+const Staffs = iStaffs.filter(iStaff => iStaff.department.name == departmentItem.name)
+      if (Defragment === "Defragment") {
+        Staffs.map((Staff) => {
+          console.log(Staff)
+        return (
+          <div className="row">
+            <div
+              key={departmentItem.id}
+              className="col-sm-6 col-md-4 col-xl-2"
+              style={{ padding: 1 + "em" }}>
+              {departmentItem.name}
+            </div>
+            <div
+              key={Staff.id}
+              className="col-sm-6 col-md-4 col-xl-2"
+              style={{ padding: 1 + "em" }} >
+              <RenderStaffList Staff={Staff} />
+            </div>
+          </div>
+        );
+      } )}
+      else {
+    Staffs.map(Staff => {
+      console.log(Staff)
+          return (
+            <div
+              key={Staff.id}
+              className="col-sm-6 col-md-4 col-xl-2"
+              style={{ padding: 1 + "em" }}>
+              <RenderStaffList Staff={Staff} />
+            </div>
+          );
+        });
+      }
+    });
+  
   //can xu ly o day
-  const staf = iStaffs.map((Staff) => {
 
-    return (
-      <div
-        key={Staff.id}
-        className="col-sm-6 col-md-4 col-xl-2"
-        style={{ padding: 1 + "em" }}
-      >
-        <DepartmentBar/>
-        <RenderStaffList Staff={Staff} />
-      </div>
-    );
-  });
   return (
     <div className="container-fluid">
       <div className="row">
@@ -98,18 +94,24 @@ else {
             type="button"
             className="btn btn-outline-primary"
             style={{ backgroundColor: "none" }}
-            onClick={mySearch}>
+            onClick={mySearch}
+          >
             search
           </button>
         </div>
       </div>
       <hr />
-      <select className="form-select" id="Defragment-select">
-        <option value= "Default" >None Defragment</option>
+      <select className="form-select" id="Defragment-select"  >
+        <option value="Default">None Defragment</option>
         <option value="Defragment">Defragment with Deparment</option>
       </select>
-      <button type="button" className="btn btn-primary mt-3" onClick={myDefragment}>Submit</button>
-      <div className="row">{staf}</div>
+      <button
+        type="button"
+        className="btn btn-primary mt-3"
+        onClick={myDefragment}
+      >        Submit
+      </button>
+      <div className="row">{DepartmentContainer}</div>
       <div className="row">Bấm vào tên Nhân Viên để xem thông tin cụ thể.</div>
     </div>
   );
