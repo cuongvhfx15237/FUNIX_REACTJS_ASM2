@@ -44,25 +44,33 @@ const DepartmentContainer = props.Departments.map((departmentItem) => {
 
 
         return(
-        Staffs.map((Staff) => {
-          return(
-          <div className="row">
+
+          <div className="row"  style={{border: "1px solid black" }}>
             <div
               key={departmentItem.id}
               className="col-sm-12 col-md-3 col-xl-2"
-              style={{ padding: 1 + "em", backgroundColor: "blue"}}>
+              style={{ padding: 1 + "em", 
+                      backgroundColor: "#1e90ff", 
+                      border: "1px solid black", 
+                      fontSize: 1 + "em", 
+                      textAlign:"center",
+                      width: "100%"}}>
               {departmentItem.name}
             </div>
-            <div
-              key={Staff.id}
-              className="col-sm-12 col-md-3 col-xl-2"
-              style={{ padding: 1 + "em" }} >
-              <RenderStaffList Staff={Staff} />
-            </div>
+              <div className="row">
+              {Staffs.map((Staff) => {
+                  return(
+                  <div 
+                  key={Staff.id}
+                  className="col-sm-12 col-md-3 col-xl-2"
+                  style={{ padding: 1 + "em", border: "1px solid black" }} >
+                  <RenderStaffList Staff={Staff} />
+                </div>)})}
+                </div>
           </div>
           )
-      }))
       }
+
       else {
     return (
       Staffs.map(Staff => {
@@ -91,14 +99,14 @@ const DepartmentContainer = props.Departments.map((departmentItem) => {
           <input
             id="SearchName"
             type="text"
-            className="form-control rounded"
+            className="form-control rounded col-sm-9 col-md-10 col-xl-10"
             placeholder="Search"
             aria-label="Search"
             aria-describedby="search-addon"
           />
           <button
             type="button"
-            className="btn btn-outline-primary"
+            className="btn btn-outline-primary col-sm-3 col-md-2 col-xl-2"
             style={{ backgroundColor: "none" }}
             onClick={mySearch}
           >
@@ -107,16 +115,19 @@ const DepartmentContainer = props.Departments.map((departmentItem) => {
         </div>
       </div>
       <hr />
-      <select className="form-select" id="Defragment-select"  >
+      <div  className="row">
+      <select className="form-select" id="Defragment-select" style={{margin: '0px', width: '80%'}} >
         <option value="Default">None Defragment</option>
         <option value="Defragment">Defragment with Deparment</option>
       </select>
       <button
         type="button"
-        className="btn btn-primary mt-3"
+        className="btn btn-primary"
+        style={{margin: '0px', width: '20%'}}
         onClick={myDefragment}
       >        Submit
       </button>
+      </div>
       <div className="row">{DepartmentContainer}</div>
       <div className="row">Bấm vào tên Nhân Viên để xem thông tin cụ thể.</div>
     </div>
