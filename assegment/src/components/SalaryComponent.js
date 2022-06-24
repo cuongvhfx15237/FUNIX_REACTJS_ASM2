@@ -28,10 +28,11 @@ function formatMoney(n) {
      iStaffs=props.Staffs.filter((iStaff)=> iStaff.name===searchName)}
 
       //Sort 
-    const [SortId, setSortId] = useState('');
+    const [sortId, setSortId] = useState('');
+    const [sortSalary, setSortSalary] = useState('')
       const mySort = () => {
         setSortId(document.getElementById("SortHandle").value);
-        if (SortId === "IdUp") {
+        if (sortId === "IdUp") {
           return (
             iStaffs = iStaffs.sort(function(a,b){
               return(a.id-b.id)
@@ -39,35 +40,36 @@ function formatMoney(n) {
           )
 
         }
-        else if (SortId === "IdDown") {
+        else if (sortId === "IdDown") {
           return (
             iStaffs = iStaffs.sort(function(a,b){
               return(b.id-a.id)
             })
           )
         }
-        else if (SortId === "salaryDown") {
+        setSortSalary(document.getElementById("SortHandle").value);
+        if (sortSalary === "salaryDown") {
+
           return (
-            iStaffs = iStaffs.sort(function(a,b){
-              return(b.id-a.id)
+            iStaffs = iStaffs.sort(function(c,d){
+              return(c.sclcryTotal-d.salaryTotal)
             })
           )
         }
-        else if (SortId === "salaryUp") {
+        else if (sortSalary === "salaryUp") {
           return (
-            iStaffs = iStaffs.sort(function(a,b){
-              return(b.id-a.id)
+            iStaffs = iStaffs.sort(function(c,d){
+              return(d.salaryTotal-c.salaryTotal)
             })
           )
         }
-        console.log(iStaffs);
       }
 
 
 
   //body
        const staf = iStaffs.map((Staff) => {
-         const salaryTotal = formatMoney(parseInt(Staff.salaryScale)*3000000+parseInt(Staff.overTime)*200000);
+         const salaryTotal = parseInt(Staff.salaryScale)*3000000+parseInt(Staff.overTime)*200000;
          Staff = Object.assign(Staff, {salaryTotal:salaryTotal});
       return (
           <div 
@@ -86,7 +88,7 @@ function formatMoney(n) {
                   <p> Hệ số lương: {Staff.salaryScale}</p>
                   <p> Số ngày làm thêm: {Staff.overTime} </p>
                   <label style={{backgroundColor:'#e3e3e3', border:'1px solid black', borderRadius:10+"px", textAlign: 'center', fontSize:22+"px"}}> 
-                    Lương: {Staff.salaryTotal}
+                    Lương: {Staff.salaryTotal}VND
                     </label>
                   
               </Card>

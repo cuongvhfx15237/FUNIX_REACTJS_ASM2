@@ -35,20 +35,33 @@ const StaffList = (props, iStaffs) => {
     setDefragment(document.getElementById("Defragment-select").value);
   
   };
+  const [classChange, setClassChange] = useState("col-sm-12 col-md-3 col-xl-2")
+  function handleColum(event){
 
-const DepartmentContainer = props.Departments.map((departmentItem) => {
+    const classGet = event.target.value
+    if (classGet === '2'){
+      setClassChange("col-sm-12 col-md-3 col-xl-6")
+    }
+    else if (classGet === '4'){
+      setClassChange("col-sm-12 col-md-3 col-xl-3")
+    }
+    else {
+      setClassChange("col-sm-12 col-md-3 col-xl-2")
+    }
+
+  }
   
+const DepartmentContainer = props.Departments.map((departmentItem) => {
+
+
   const Staffs = iStaffs.filter(iStaff => iStaff.department.name == departmentItem.name)
       if (Defragment === "Defragment") {
 
-
-
         return(
-
-          <div className="row"  style={{border: "1px solid black" }}>
+          <div className="row"  style={{margin:"0px"}}>
             <div
               key={departmentItem.id}
-              className="col-sm-12 col-md-3 col-xl-2"
+              className={classChange}
               style={{ padding: 1 + "em", 
                       backgroundColor: "#1e90ff", 
                       border: "1px solid black", 
@@ -62,7 +75,7 @@ const DepartmentContainer = props.Departments.map((departmentItem) => {
                   return(
                   <div 
                   key={Staff.id}
-                  className="col-sm-12 col-md-3 col-xl-2"
+                  className={classChange}
                   style={{ padding: 1 + "em", border: "1px solid black" }} >
                   <RenderStaffList Staff={Staff} />
                 </div>)})}
@@ -77,7 +90,7 @@ const DepartmentContainer = props.Departments.map((departmentItem) => {
         return(
             <div
               key={Staff.id}
-              className="col-sm-6 col-md-4 col-xl-2"
+              className={classChange}
               style={{ padding: 1 + "em" }}>
               <RenderStaffList Staff={Staff} />
             </div>
@@ -86,16 +99,13 @@ const DepartmentContainer = props.Departments.map((departmentItem) => {
           
         }))}})
 
-      
-
-  
   //can xu ly o day
-
+  debugger
   return (
     <div className="container-fluid">
-      <div className="row">
-        <h2 style={{ width: 50 + "%" }}>Nhân Viên</h2>
-        <div className="input-group" style={{ width: 50 + "%" }}>
+      <div className="row " style={{margin:"0px"}}>
+        <h2 style={{ width: 50 + "%" }} className="col-sm-12 col-md-12 col-xl-6">Nhân Viên</h2>
+        <div className="input-group col-sm-12 col-md-12 col-xl-6" style={{ width: 50 + "%" }}>
           <input
             id="SearchName"
             type="text"
@@ -115,18 +125,25 @@ const DepartmentContainer = props.Departments.map((departmentItem) => {
         </div>
       </div>
       <hr />
-      <div  className="row">
-      <select className="form-select" id="Defragment-select" style={{margin: '0px', width: '80%'}} >
-        <option value="Default">None Defragment</option>
-        <option value="Defragment">Defragment with Deparment</option>
-      </select>
-      <button
-        type="button"
-        className="btn btn-primary"
-        style={{margin: '0px', width: '20%'}}
-        onClick={myDefragment}
-      >        Submit
-      </button>
+      <div  className="row" style={{margin:"0px"}}>
+        <h5 className="btn-column col-xl-1" >Hiển thị:</h5>
+      <button type = "button" className="btn-outline-primary btn-column col-xl-1" value={2} onClick={handleColum}>2 cột</button>
+      <button type = "button" className="btn-outline-primary  btn-column col-xl-1" value={4}onClick={handleColum}>4 cột</button>
+      <button type = "button" className="btn-outline-primary  btn-column col-xl-1" value={6} onClick={handleColum}>6 cột</button>
+     <span className="btn-column col-xl-2"></span>
+        <div  className="row col-sm-12 col-md-12 col-xl-6" style={{margin:"0px"}}>
+          <select className="form-select" id="Defragment-select" style={{margin: '0px', width: '80%'}} >
+            <option value="Default">None Defragment</option>
+            <option value="Defragment">Defragment with Deparment</option>
+          </select>
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            style={{margin: '0px', width: '20%'}}
+            onClick={myDefragment}
+          >        Submit
+          </button>
+      </div>
       </div>
       <div className="row">{DepartmentContainer}</div>
       <div className="row">Bấm vào tên Nhân Viên để xem thông tin cụ thể.</div>

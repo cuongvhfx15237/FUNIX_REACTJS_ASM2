@@ -28,3 +28,9 @@ background-color: rgba(131, 131, 215, 0.224);
 form {
   justify-content: space-around;
 }
+
+@media only screen and (max-width: 1139px){
+  .btn-column{
+    display: none;
+  }
+}
